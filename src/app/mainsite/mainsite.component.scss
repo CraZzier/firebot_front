@@ -1,0 +1,28 @@
+.flex-container{
+    display: flex;
+    width:100%;
+    background-color:red;
+}
+.chart-part{
+    position: relative;
+    flex-basis:66%;
+    background:black;
+    border-left:solid 1px rgba(3, 64, 75, 0.904);;
+    border-right:solid 1px rgba(3, 64, 75, 0.904);;
+}
+.trading-part{
+    position: relative;
+    flex-basis:34%;
+    background:grey;
+    border-left:solid 1px rgba(3, 64, 75, 0.904);;
+    border-right:solid 1px rgba(3, 64, 75, 0.904);;
+}
+.tradingview-widget-container{
+    width:100%;
+    height:auto;
+    background-color: orange;
+}
+.chart-itself{
+    width:100%;
+    height:70vh;
+}
