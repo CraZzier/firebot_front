@@ -1,7 +1,8 @@
 .flex-container{
     display: flex;
     width:100%;
-    background-color:red;
+    background-color:black;
+    height:96vh;
 }
 .chart-part{
     position: relative;
@@ -9,6 +10,7 @@
     background:black;
     border-left:solid 1px rgba(3, 64, 75, 0.904);;
     border-right:solid 1px rgba(3, 64, 75, 0.904);;
+
 }
 .trading-part{
     position: relative;
@@ -20,9 +22,51 @@
 .tradingview-widget-container{
     width:100%;
     height:auto;
-    background-color: orange;
+    background-color: black;
 }
 .chart-itself{
     width:100%;
     height:70vh;
+}
+.anonymous{
+    width:100%;
+    height:auto;
+    opacity:0.4;
+
+}
+.choosing-chart{
+    position: relative;
+    flex-basis:34%;
+    background: url("https://images3.alphacoders.com/606/thumb-1920-606500.jpg");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    background-position-y: bottom;
+}
+#from-field{
+    background-color: black;
+    color:#20C20E;
+}
+#to-field{
+    background-color: black;
+    color:#20C20E;
+}
+#to-field{
+    background-color: black;
+    color:#20C20E;
+}
+#submitbut{
+    background-color: black;
+    color:#20C20E;
+}
+#select-coin{
+    background-color: black;
+    color:#20C20E;
+}
+.anotitle{
+    color:#20C20E;
+    text-align: center;
+    margin-top:10px;
+    margin-bottom:10px;
+
 }

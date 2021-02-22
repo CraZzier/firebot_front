@@ -71,7 +71,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "botgofront:build"
+            "browserTarget": "botgofront:build",
+            "port": 4200,
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {

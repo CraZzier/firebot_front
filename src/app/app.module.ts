@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainsiteComponent } from './mainsite/mainsite.component';
 import { MenuComponent } from './menu/menu.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DownloadchartService } from './downloadchart.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,9 +17,11 @@ import { MenuComponent } from './menu/menu.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [DownloadchartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
