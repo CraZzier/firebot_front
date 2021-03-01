@@ -1,5 +1,38 @@
 import { stringify } from "@angular/compiler/src/util"
 
+
+
+export class AlgorithmTransactionsFull {
+	Transaction:AlgorithmTransactions[];
+	Finalusdt:number;
+	Transamount :number;
+	SuccessfulTrans:number;
+	LostTrans:number;
+}
+
+//AlgorithmTransactions keeps packet of trasnactions main data
+export class AlgorithmTransactions {
+	StartBalance:number;
+	EntryFee:number;
+	Stoploss:Stoploss[];
+	Leverage :number;
+	BuyingPrice:number;
+	BalanceMinusFee:number;
+	EntryTime:number;
+
+	FinishBalance:number;
+	ClosingFee:number;
+	Type:string
+	ClosingTime:number;
+	SellingPrice:number;
+
+	FeeSum:number;
+	ProfitWithoutFee:number;
+	Profit:number;
+}
+export class Stoploss{
+    Timestamp:number
+}
 export class CoinFormula{
     CoinName: string;
     From: string;
