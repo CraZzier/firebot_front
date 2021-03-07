@@ -135,16 +135,17 @@ q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+    border-bottom:2px solid red;
 }.single-transaction-window{
     font-size:10px !important;
     background-color:rgba(50,50,50,0.2);
     color:white;
 }
 .entry-row th{
-    background-color: rgba(65, 236, 65, 0.329) !important;
+    background-color: black !important;
 }
 .exit-row th{
-    background-color:rgba(255, 0, 0, 0.233) !important;
+    background-color:black !important;
 }
 .sum-row{
     background-color:orange;
@@ -154,5 +155,12 @@ table {
     color:white;
 }
 .single-sum-row th{
-    background-color:blueviolet !important;
+    background-color:black !important;
+}
+
+.time{
+    cursor:pointer;
+    &:hover{
+        color:palevioletred;
+    }
 }

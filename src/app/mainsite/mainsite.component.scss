@@ -159,3 +159,9 @@
 .single-sum-row th{
     background-color:blueviolet;
 }
+.time{
+    cursor:pointer;
+    &:hover{
+        color:palevioletred;
+    }
+}

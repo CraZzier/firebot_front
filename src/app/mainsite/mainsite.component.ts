@@ -17,9 +17,9 @@ declare var moment:any;
 })
 export class MainsiteComponent implements OnInit {
   defaultPair = "BTCUSDT";
-  defaultFrom = "2021-02-11";
-  defaultTo = "2021-02-12";
-  actualFrom = "2021-02-11";
+  defaultFrom = "2020-02-11";
+  defaultTo = "2021-02-11";
+  actualFrom = "2020-02-11";
   actualTo = "2021-02-11";
   actualCoinName = "BTCUSDT";
   chart:any;
@@ -181,7 +181,6 @@ export class MainsiteComponent implements OnInit {
             title: 'Odpowiedź w trakcie ładowania',
             message: 'Poczekaj na update wykresu'
           });
-          console.log(response);
           for(let i=0;i<response.length;i++){
             let timetemp = response[i].openTime/1000 + 3600;
             let opentemp = parseFloat(response[i].open);
@@ -197,7 +196,6 @@ export class MainsiteComponent implements OnInit {
               this.volumeCandledata.push({time: timetemp, open:0, high:0, low:volume, close: volume});
             }
           }
-          console.log(this.rawCandledata);
           this.updateChart(this.rawCandledata, this.volumeCandledata);
         },
         (error: HttpErrorResponse)=>{
@@ -252,6 +250,19 @@ export class MainsiteComponent implements OnInit {
     this.volumeSeries.setData(volume);;
   }
   showTransactionTable(Transobj):void{
+    var tempthis = this;
+    $("#server-text-cont").on("click", ".time", function(){
+      let timestamp = $(this).data("time");
+      tempthis.chart.timeScale().setVisibleRange({
+        from: timestamp/1000 -(60*60*6),
+        to: timestamp/1000 + (60*60*6),
+      });
+      tempthis.chart.applyOptions({
+        priceScale:{
+          autoScale: true,
+        }
+      });
+    });
     let finish = `
     <div class="general-transaction-window">
     <table class="table">
@@ -274,13 +285,11 @@ export class MainsiteComponent implements OnInit {
     $("#server-text-cont div").remove();
     $("#server-text-cont").append(finish);
     for(let i=0;i<Transobj.Transaction.length;i++){
-      let from = this.timeConverterReverseDate(this.actualFrom);
-      let to = this.timeConverterReverseDate(this.actualTo);
+      let from = this.timeConverterReverseDate(this.actualFrom) +3600;
+      let to = this.timeConverterReverseDate(this.actualTo)+ 3600;
       let temp = Transobj.Transaction[i];
-      if(temp.EntryTime>from && temp.EntryTime<to && temp.ClosingTime>from && temp.ClosingTime<to){
-        this.markers.push({time:temp.EntryTime/1000+3600, position:'aboveBar', color:'green', shape: 'arrowDown',text:'Entry', size:3});
-        this.markers.push({time:temp.ClosingTime/1000+3600, position:'belowBar', color:'red', shape: 'arrowUp',text:'Close', size:3});
-      }
+      this.markers.push({time:temp.EntryTime/1000+3600, position:'aboveBar', color:'green', shape: 'arrowDown',text:'Entry', size:3});
+      this.markers.push({time:temp.ClosingTime/1000+3600, position:'belowBar', color:'red', shape: 'arrowUp',text:'Close', size:3});
       let content = `
       <div class="single-transaction-window">
       <table class="table table-dark">
@@ -296,7 +305,7 @@ export class MainsiteComponent implements OnInit {
               </tr>
           </thead>
           <tr>
-              <td>${this.timeConverter(temp.EntryTime)}</td>
+              <td class="time" data-time="${temp.EntryTime}">${this.timeConverter(temp.EntryTime)}</td>
               <td>${temp.StartBalance.toFixed(2)}</td>
               <td>${temp.BuyingPrice.toFixed(2)}</td>
               <td>${temp.EntryFee.toFixed(2)}</td>
@@ -315,11 +324,11 @@ export class MainsiteComponent implements OnInit {
               </tr>
           </thead>
           <tr>
-              <td>${this.timeConverter(temp.ClosingTime)}</td>
-              <td>${temp.FinishBalance.toFixed(2)}</td>
-              <td colspan="2">${temp.SellingPrice.toFixed(2)}</td>
-              <td colspan="2">${temp.ClosingFee.toFixed(2)}</td>
-              <td>${temp.Type}</td>       
+            <td class="time" data-time="${temp.ClosingTime}" >${this.timeConverter(temp.ClosingTime)}</td>
+            <td>${temp.FinishBalance.toFixed(2)}</td>
+            <td colspan="2">${temp.SellingPrice.toFixed(2)}</td>
+            <td colspan="2">${temp.ClosingFee.toFixed(2)}</td>
+            <td>${temp.Type}</td>       
           </tr>
           <thead class="thead-dark">
               <tr class="single-sum-row">
@@ -416,6 +425,6 @@ export class MainsiteComponent implements OnInit {
           visible: false,
       },
     },
-  })
+  });
   }
 }
