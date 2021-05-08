@@ -25,6 +25,7 @@ export class AlgorithmTransactions {
 	Type:string
 	ClosingTime:number;
 	SellingPrice:number;
+	LongOrShort:string;
 
 	FeeSum:number;
 	ProfitWithoutFee:number;
@@ -64,4 +65,20 @@ export class ReadyCandleData{
     high: number;
     low: number;
     close: number;
+}
+export class CountingEMAs{
+	EmaNum:      number[];
+	EmaInterval: string;
+
+	AverageTimeCrossPlus: number;
+	AverageDeviationPlus: number;
+	MaxDevationPlus:      number;
+	CasesPlus:            number;
+	MaxTimePlus:          number;
+
+	AverageTimeCrossMinus: number;
+	AverageDeviationMinus: number;
+	MaxDevationMinus:     number;
+	CasesMinus:            number;
+	MaxTimeMinus:          number;
 }

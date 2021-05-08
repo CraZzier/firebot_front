@@ -8,6 +8,14 @@
         </div>
         <div class="indicators">
             <div class="single-indicator">
+                <input class="timeframe" value='1m' type="button" (click)='changeTimeframe("1m")' >
+                <input class="timeframe" value='5m' type="button"  (click)='changeTimeframe("5m")'>
+                <input class="timeframe" value='15m' type="button"  (click)='changeTimeframe("15m")'>
+                <input class="timeframe" value='1h' type="button"  (click)='changeTimeframe("1h")'>
+                <input class="timeframe" value='1d' type="button"  (click)='changeTimeframe("1d")'>
+                <input class="timeframe" value='1w' type="button"  (click)='changeTimeframe("1w")'>
+            </div>
+            <div class="single-indicator">
                 <div class="title-ind">Ma</div>
                 <div class="form">
                     <form class="indicator-selection" [formGroup]="ma" (ngSubmit)="maSubmit()">
@@ -34,14 +42,21 @@
                 </div>
             </div>
             <div class="single-indicator">
+                <div class="title-ind">MACD</div>
+                <div class="form">
+                    <input class="ind-inp sub" (click)="macdSubmit()" type="submit" value="Add">
+                </div>
+            </div>
+            <div class="single-indicator">
                 <input type="button" value="Clear Indicators" class="clearind" (click)="clearIndicators()">
             </div>
         </div>
     </div>
     <div class="choosing-chart">
-        <h1 class="h3 mb-3 font-weight-normal anotitle">Pobierz wykres</h1>
+        <h4 style="color:white;font-size:14px;padding:6px;">BTC - 24.08.2017 ETH - 24.08.2017 NEO - 26.11.2017  ADA - 24-04-2018 XRP - 10-05-2018 XLM - 04-06-2018 LINK - 24-01-2019</h4>
+        <h1 class="h5 mb-3 font-weight-normal anotitle">Pobierz wykres</h1>
         <form class="coin-selection" [formGroup]="coin" (ngSubmit)="onSubmit()" autocomplete="off">
-            <select id="select-coin" [(ngModel)]='defaultPair'  class="form-control" formControlName="coinname" name="selectt">
+            <select id="select-coin" [(ngModel)]='defaultPair'  class="form-control" formControlName="coinname" name="selectt" (change)="changeActuals()">
                 <option value="BTCUSDT" selected>BTCUSDT</option>
                 <option value="ETHUSDT">ETHUSDT</option>
                 <option value="ADAUSDT">ADAUSDT</option>
@@ -50,11 +65,13 @@
                 <option value="XRPUSDT">XRPUSDT</option>
                 <option value="LINKUSDT">LINKUSDT</option>
             </select>
-            <input id="from-field" class="form-control btn-success"[(ngModel)]='defaultFrom' type="date" placeholder="Od" formControlName="from">
-            <input id="to-field"  class="form-control btn-success" [(ngModel)]='defaultTo' type="date" placeholder="Do" formControlName="to">
+            <input id="from-field" class="form-control btn-success"[(ngModel)]='defaultFrom' type="date" placeholder="Od" formControlName="from" (change)="changeActuals()">
+            <input id="to-field"  class="form-control btn-success" [(ngModel)]='defaultTo' type="date" placeholder="Do" formControlName="to" (change)="changeActuals()">
             <input type="submit" id="submitbut" class="btn btn-lg btn-primary btn-block" value="Pobierz">
         </form>
         <input type="button" style="background-color:black;color:#20C20E" value="Przetestuj bota" class="btn btn-lg btn-primary btn-block" (click)="testBot()">
+        <input type="button" style="background-color:black;color:#20C20E" value="Zrób wykresy" class="btn btn-lg btn-primary btn-block" (click)="testGoCharts()">
+        <input type="button" style="background-color:black;color:#20C20E" value="Real BOT" class="btn btn-lg btn-primary btn-block" (click)="realBot()">
         <div class="server-text" id="server-text-cont">
 
         </div>
