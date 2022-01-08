@@ -565,70 +565,7 @@ export class MainsiteComponent implements OnInit {k
     )
   }
   ngOnInit(): void {
-    
-    this.downloadchart.Initialise().subscribe(
-      response=>{
-        iziToast.success({
-          title: 'Initialisation',
-          message: response
-        });
-      },
-      (error: HttpErrorResponse)=>{
-        iziToast.error({
-          title: 'Error',
-          message: error.message,
-        });
-      }
-    );
-    this.chart = createChart(document.getElementById("tradingview_782b5"), {
-      leftPriceScale: {
-        visible: true,
-        borderColor: 'rgba(197, 203, 206, 1)',
-        autoScale: true,
-        scaleMargins: {top:0.70, bottom:0.00},
-      },
-      rightPriceScale: {
-        visible: true,
-        borderColor: 'rgba(197, 203, 206, 1)',
-        
-      },
-    });
-    this.chart.applyOptions({
-      crosshair :{
-        mode: 0,
-      },
-      timeScale: {
-        rightOffset: 50,
-        barSpacing: 10,
-        fixLeftEdge: false,
-        lockVisibleTimeRangeOnResize: true,
-        rightBarStaysOnScroll: true,
-        borderVisible: true,
-        borderColor: '#03404B',
-        visible: true,
-        timeVisible: true,
-        secondsVisible: true,
-    }, 
-    layout: {
-      backgroundColor: '#000000',
-      textColor: '#696969',
-      fontSize: 12,
-      fontFamily: 'Calibri',
-    },
-    grid: {
-      
-      vertLines: {
-          color: 'rgba(70, 130, 180, 0.5)',
-          style: 1,
-          visible: false,
-      },
-      horzLines: {
-          color: 'rgba(70, 130, 180, 0.5)',
-          style: 1,
-          visible: false,
-      },
-    },
-  });
+
   }
   changeActuals():void{
       this.actualFrom = this.coin.value.from;
